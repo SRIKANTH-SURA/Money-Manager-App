@@ -1,3 +1,19 @@
+.history-table-row {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.history-table-row tr {
+  border: 2px solid #cbd5e1;
+  border-top: 0;
+}
+
+.history-table-row td {
+  text-align: center;
+  padding: 8px;
+  width: 25%;
+}
+
 .delete-img {
   width: 25px;
 }

@@ -20,7 +20,7 @@ class MoneyManager extends Component {
     transactionList: [],
     titleInput: '',
     amountInput: '',
-    typeOption: 'Income',
+    typeOption: 'INCOME',
     moneyDetails: {
       totalIncome: 0,
       totalExpenses: 0,
@@ -33,7 +33,7 @@ class MoneyManager extends Component {
     const deletedTransaction = transactionList.find(
       eachTransaction => eachTransaction.id === id,
     )
-    if (deletedTransaction.typeOption === 'Income') {
+    if (deletedTransaction.typeOption === 'INCOME') {
       this.setState(prevState => ({
         moneyDetails: {
           totalIncome:
@@ -77,10 +77,9 @@ class MoneyManager extends Component {
     let income = moneyDetails.totalIncome
     let expenses = moneyDetails.totalExpenses
 
-    if (typeOption === 'Income') {
+    if (typeOption === 'INCOME') {
       income += amountInput
-    }
-    if (typeOption === 'Expenses') {
+    } else {
       expenses += amountInput
     }
     balance = income - expenses
@@ -89,7 +88,7 @@ class MoneyManager extends Component {
       transactionList: [...prevState.transactionList, newTransaction],
       titleInput: '',
       amountInput: '',
-      typeOption: 'Income',
+      typeOption: 'INCOME',
       moneyDetails: {
         totalIncome: income,
         totalExpenses: expenses,
@@ -137,12 +136,9 @@ class MoneyManager extends Component {
               <form className="transaction-form">
                 <h1 className="add-transaction-heading">Add Transaction</h1>
                 <div className="form-field">
-                  <label className="label-text" htmlFor="title">
-                    TITLE
-                  </label>
+                  <p className="label-text">Title</p>
                   <input
                     className="user-input"
-                    id="title"
                     type="text"
                     value={titleInput}
                     placeholder="TITLE"
@@ -150,12 +146,9 @@ class MoneyManager extends Component {
                   />
                 </div>
                 <div className="form-field">
-                  <label className="label-text" htmlFor="amount">
-                    AMOUNT
-                  </label>
+                  <p className="label-text">Amount</p>
                   <input
                     className="user-input"
-                    id="amount"
                     type="number"
                     value={amountInput}
                     placeholder="AMOUNT"
@@ -163,9 +156,7 @@ class MoneyManager extends Component {
                   />
                 </div>
                 <div className="form-field">
-                  <label className="label-text" htmlFor="select">
-                    TYPE
-                  </label>
+                  <p className="label-text">Type</p>
                   <select
                     className="user-input"
                     value={typeOption}
@@ -194,14 +185,15 @@ class MoneyManager extends Component {
             </div>
             <div className="transaction-history-container">
               <h1 className="history-heading">History</h1>
-              <table className="history-table">
+              <table className="history-table-heading">
                 <tr className="table-row">
                   <th>Title</th>
                   <th>Amount</th>
                   <th>Type</th>
-                  <th> </th>
+                  <th>{'     '}</th>
                 </tr>
-
+              </table>
+              <ul>
                 {transactionList.map(eachTransaction => (
                   <TransactionItem
                     transactionDetails={eachTransaction}
@@ -209,7 +201,7 @@ class MoneyManager extends Component {
                     onDeleteTransaction={this.onDeleteTransaction}
                   />
                 ))}
-              </table>
+              </ul>
             </div>
           </div>
         </div>
