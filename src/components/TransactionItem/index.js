@@ -8,24 +8,20 @@ const TransactionItem = props => {
   }
 
   return (
-    <li>
-      <table className="history-table-row">
-        <tr className="table-row">
-          <td>{titleInput}</td>
-          <td>Rs {amountInput}</td>
-          <td>{typeOption}</td>
-          <td>
-            <button className="delete-btn" type="button" data-testid="delete">
-              <img
-                className="delete-img"
-                src="https://assets.ccbp.in/frontend/react-js/money-manager/delete.png"
-                alt="delete"
-                onClick={onClickDelete}
-              />
-            </button>
-          </td>
-        </tr>
-      </table>
+    <li className="transaction-item">
+      <p>{titleInput}</p>
+      <p>Rs {amountInput}</p>
+      <p>{typeOption}</p>
+      <p>
+        <button className="delete-btn" type="button" data-testid="delete">
+          <img
+            className="delete-img"
+            src="https://assets.ccbp.in/frontend/react-js/money-manager/delete.png"
+            alt="delete"
+            onClick={onClickDelete}
+          />
+        </button>
+      </p>
     </li>
   )
 }

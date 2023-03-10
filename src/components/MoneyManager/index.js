@@ -136,8 +136,11 @@ class MoneyManager extends Component {
               <form className="transaction-form">
                 <h1 className="add-transaction-heading">Add Transaction</h1>
                 <div className="form-field">
-                  <p className="label-text">Title</p>
+                  <label className="label-text" htmlFor="title">
+                    TITLE
+                  </label>
                   <input
+                    id="title"
                     className="user-input"
                     type="text"
                     value={titleInput}
@@ -146,8 +149,11 @@ class MoneyManager extends Component {
                   />
                 </div>
                 <div className="form-field">
-                  <p className="label-text">Amount</p>
+                  <label className="label-text" htmlFor="amount">
+                    AMOUNT
+                  </label>
                   <input
+                    id="amount"
                     className="user-input"
                     type="number"
                     value={amountInput}
@@ -156,7 +162,7 @@ class MoneyManager extends Component {
                   />
                 </div>
                 <div className="form-field">
-                  <p className="label-text">Type</p>
+                  <p className="label-text">TYPE</p>
                   <select
                     className="user-input"
                     value={typeOption}
@@ -185,23 +191,23 @@ class MoneyManager extends Component {
             </div>
             <div className="transaction-history-container">
               <h1 className="history-heading">History</h1>
-              <table className="history-table-heading">
-                <tr className="table-row">
-                  <th>Title</th>
-                  <th>Amount</th>
-                  <th>Type</th>
-                  <th>{'     '}</th>
-                </tr>
-              </table>
-              <ul>
-                {transactionList.map(eachTransaction => (
-                  <TransactionItem
-                    transactionDetails={eachTransaction}
-                    key={eachTransaction.id}
-                    onDeleteTransaction={this.onDeleteTransaction}
-                  />
-                ))}
-              </ul>
+              <div className="history-table-heading">
+                <div className="table-row">
+                  <p className="table-heading">Title</p>
+                  <p className="table-heading">Amount</p>
+                  <p className="table-heading">Type</p>
+                  <p> </p>
+                </div>
+                <ul className="transaction-list">
+                  {transactionList.map(eachTransaction => (
+                    <TransactionItem
+                      transactionDetails={eachTransaction}
+                      key={eachTransaction.id}
+                      onDeleteTransaction={this.onDeleteTransaction}
+                    />
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -211,18 +217,3 @@ class MoneyManager extends Component {
 }
 
 export default MoneyManager
-
-/* <TransactionItem />
-
-                <tr className="table-row">
-                  <td>Salary</td>
-                  <td>Rs 50000</td>
-                  <td>Income</td>
-                  <td>
-                    <img
-                      className="delete-img"
-                      src="https://assets.ccbp.in/frontend/react-js/money-manager/delete.png"
-                      alt="delete"
-                    />
-                  </td>
-                </tr> */

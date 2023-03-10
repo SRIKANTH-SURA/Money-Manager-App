@@ -1,17 +1,22 @@
-.history-table-row {
-  border-collapse: collapse;
-  width: 100%;
+.transaction-item {
+  display: flex;
+  list-style-type: none;
 }
 
-.history-table-row tr {
-  border: 2px solid #cbd5e1;
-  border-top: 0;
+.transaction-item {
+  display: flex;
+  border-bottom: 2px solid #cbd5e1;
+  align-items: center;
+  padding: 8px 0px;
 }
 
-.history-table-row td {
-  text-align: center;
-  padding: 8px;
+.transaction-item p {
   width: 25%;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 16px;
+  margin: 0;
+  color: #334155;
 }
 
 .delete-img {

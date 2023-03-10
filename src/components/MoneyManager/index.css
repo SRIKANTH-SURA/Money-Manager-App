@@ -38,6 +38,10 @@
   font-weight: 600;
 }
 
+.app-text {
+  color: #0b69ff;
+}
+
 @media (min-width: 768px) {
   .money-manager-app {
     width: 98%;
@@ -132,7 +136,7 @@
   color: #334155;
 }
 
-ul {
+.transaction-list {
   padding: 0px;
   margin: 0px;
 }
@@ -140,26 +144,29 @@ ul {
 .history-table-heading {
   border-collapse: collapse;
   width: 100%;
-  /* margin-bottom: 20px; */
+  margin-bottom: 20px;
   border: 2px solid #cbd5e1;
 }
 
-.history-table-heading tr {
-  border: 2px solid #cbd5e1;
+.table-row {
+  display: flex;
+  border-bottom: 2px solid #cbd5e1;
+  align-items: center;
+  padding: 12px 0px;
 }
 
-.history-table-heading th {
-  text-align: center;
-  padding: 8px;
+.table-heading {
   width: 25%;
+  text-align: center;
+  margin: 0;
+  font-size: 20px;
+  font-family: Roboto;
+  font-weight: 600;
+  color: #000000;
 }
 
 .delete-img {
   width: 25px;
-}
-
-li {
-  list-style-type: none;
 }
 
 @media (min-width: 768px) {
