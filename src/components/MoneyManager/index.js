@@ -20,7 +20,7 @@ class MoneyManager extends Component {
     transactionList: [],
     titleInput: '',
     amountInput: '',
-    typeOption: 'INCOME',
+    optionId: transactionTypeOptions[0].optionId,
     moneyDetails: {
       totalIncome: 0,
       totalExpenses: 0,
@@ -33,7 +33,9 @@ class MoneyManager extends Component {
     const deletedTransaction = transactionList.find(
       eachTransaction => eachTransaction.id === id,
     )
-    if (deletedTransaction.typeOption === 'INCOME') {
+    if (
+      deletedTransaction.typeOption === transactionTypeOptions[0].displayText
+    ) {
       this.setState(prevState => ({
         moneyDetails: {
           totalIncome:
@@ -65,19 +67,24 @@ class MoneyManager extends Component {
   }
 
   onAddTransaction = () => {
-    const {titleInput, amountInput, typeOption, moneyDetails} = this.state
+    const {titleInput, amountInput, optionId, moneyDetails} = this.state
+    const typeOption = transactionTypeOptions.find(
+      eachOption => eachOption.optionId === optionId,
+    )
+    const {displayText} = typeOption
+    console.log(typeOption)
     const newTransaction = {
       id: uuidv4(),
       titleInput,
       amountInput,
-      typeOption,
+      typeOptionInput: displayText,
     }
 
     let balance = moneyDetails.totalBalance
     let income = moneyDetails.totalIncome
     let expenses = moneyDetails.totalExpenses
 
-    if (typeOption === 'INCOME') {
+    if (optionId === transactionTypeOptions[0].optionId) {
       income += amountInput
     } else {
       expenses += amountInput
@@ -88,7 +95,7 @@ class MoneyManager extends Component {
       transactionList: [...prevState.transactionList, newTransaction],
       titleInput: '',
       amountInput: '',
-      typeOption: 'INCOME',
+      optionId: transactionTypeOptions[0].optionId,
       moneyDetails: {
         totalIncome: income,
         totalExpenses: expenses,
@@ -106,7 +113,8 @@ class MoneyManager extends Component {
   }
 
   onChangeTypeInput = event => {
-    this.setState({typeOption: event.target.value})
+    this.setState({optionId: event.target.value})
+    // console.log(element.value[0] + element.value.slice(1).toLowerCase())
   }
 
   render() {
@@ -114,9 +122,12 @@ class MoneyManager extends Component {
       transactionList,
       titleInput,
       amountInput,
-      typeOption,
+      optionId,
       moneyDetails,
     } = this.state
+
+    // const TypeOption = transactionTypeOptions
+    // console.log(TypeOption)
 
     return (
       <div className="money-manager-app">
@@ -165,8 +176,8 @@ class MoneyManager extends Component {
                   <p className="label-text">TYPE</p>
                   <select
                     className="user-input"
-                    value={typeOption}
                     onChange={this.onChangeTypeInput}
+                    value={optionId}
                   >
                     {transactionTypeOptions.map(eachOption => (
                       <option
