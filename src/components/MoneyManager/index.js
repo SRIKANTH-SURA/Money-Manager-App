@@ -166,15 +166,18 @@ class MoneyManager extends Component {
                   <input
                     id="amount"
                     className="user-input"
-                    type="number"
+                    type="text"
                     value={amountInput}
                     placeholder="AMOUNT"
                     onChange={this.onChangeAmountInput}
                   />
                 </div>
                 <div className="form-field">
-                  <p className="label-text">TYPE</p>
+                  <label className="label-text" htmlFor="type">
+                    TYPE
+                  </label>
                   <select
+                    id="type"
                     className="user-input"
                     onChange={this.onChangeTypeInput}
                     value={optionId}
